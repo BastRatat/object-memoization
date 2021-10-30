@@ -1,7 +1,9 @@
-import { useState, useRef } from 'react'
+import { useState, useRef, useMemo } from 'react'
 import Child from './Child'
+import Button from './Button'
 import { InitialState, Users } from './types'
 import { userOne, userTwo } from './users'
+import { generateButtons } from './helpers'
 import './App.css'
 
 const initialState: InitialState = {
@@ -33,36 +35,26 @@ const App = () => {
     setAreButtonsColored(!areButtonsColored)
   }
 
+  const buttonsData = useMemo(
+    () =>
+      generateButtons(areButtonsColored, {
+        handleToggleUser,
+        handleColoringButton,
+        resetUser,
+      }),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [areButtonsColored],
+  )
+
   return (
     <div className="App">
       <header className="App-header">
         <section>
           <h3>PARENT</h3>
           <p>Parent render(s): {parentCounter}</p>
-          <button
-            onClick={() => handleToggleUser(Users.BASTIEN)}
-            className={areButtonsColored ? 'colored' : ''}
-          >
-            Toggle Bastien
-          </button>
-          <button
-            onClick={() => handleToggleUser(Users.ANTOINE)}
-            className={areButtonsColored ? 'colored' : ''}
-          >
-            Toggle Antoine
-          </button>
-          <button
-            onClick={handleColoringButton}
-            className={areButtonsColored ? 'colored' : ''}
-          >
-            Color buttons
-          </button>
-          <button
-            onClick={resetUser}
-            className={areButtonsColored ? 'colored' : ''}
-          >
-            Reset user
-          </button>
+          {buttonsData.map(({ label, colored, onClick }) => (
+            <Button {...{ label, colored, onClick }} />
+          ))}
         </section>
         <Child {...{ user }} />
       </header>

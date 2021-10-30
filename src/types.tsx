@@ -3,6 +3,13 @@ export enum Users {
   ANTOINE = 'Antoine',
 }
 
+export enum ButtonLabels {
+  TOGGLE_BASTIEN = 'Toggle Bastien',
+  TOGGLE_ANTOINE = 'Toggle Antoine',
+  COLOR_BUTTON = 'Color buttons',
+  RESET_USER = 'Reset user',
+}
+
 export interface InitialState {
   id: number | null
   firstName: string
@@ -11,4 +18,10 @@ export interface InitialState {
 
 export interface ChildProps {
   user: InitialState
+}
+
+export interface ButtonProps {
+  label: string
+  onClick: (event?: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void
+  colored: boolean
 }
