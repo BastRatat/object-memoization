@@ -12,7 +12,7 @@ const initialState: InitialState = {
 
 const App = () => {
   const [user, setToggleUser] = useState(initialState)
-  const [areButtonsColored, setAreButtonsColored] = useState<boolean>(false)
+  const [areButtonsColored, setAreButtonsColored] = useState(false)
   const initialRef = useRef(0)
   const parentCounter = ++initialRef.current
 
