@@ -8,6 +8,7 @@ export enum ButtonLabels {
   TOGGLE_ANTOINE = 'Toggle Antoine',
   COLOR_BUTTON = 'Color buttons',
   RESET_USER = 'Reset user',
+  RELOAD_PAGE = 'Reload'
 }
 
 export interface InitialState {
@@ -24,4 +25,13 @@ export interface ButtonProps {
   label: string
   onClick: (event?: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void
   colored: boolean
+}
+
+type Setter = () => void
+
+export interface Handlers {
+  toggleUser: (user: Users) => void
+  colorButtons: Setter
+  resetUser: Setter
+  reloadPage: Setter
 }

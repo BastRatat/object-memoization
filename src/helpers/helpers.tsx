@@ -1,4 +1,4 @@
-import { ChildProps, ButtonLabels, Users } from './types'
+import { ChildProps, ButtonLabels, Users, Handlers } from '../types/types'
 
 const arePropsEqual = (
   prevProps: ChildProps,
@@ -19,29 +19,34 @@ const arePropsEqual = (
   return false
 }
 
-const generateButtons = (areButtonsColored: boolean, handlers: any) => {
-  const { handleToggleUser, handleColoringButton, resetUser } = handlers
+const generateButtons = (areButtonsColored: boolean, handlers: Handlers) => {
+  const { toggleUser, colorButtons, resetUser, reloadPage } = handlers
   return [
     {
       label: ButtonLabels.TOGGLE_BASTIEN,
       colored: areButtonsColored,
-      onClick: () => handleToggleUser(Users.BASTIEN),
+      onClick: () => toggleUser(Users.BASTIEN),
     },
     {
       label: ButtonLabels.TOGGLE_ANTOINE,
       colored: areButtonsColored,
-      onClick: () => handleToggleUser(Users.ANTOINE),
+      onClick: () => toggleUser(Users.ANTOINE),
     },
     {
       label: ButtonLabels.COLOR_BUTTON,
       colored: areButtonsColored,
-      onClick: handleColoringButton,
+      onClick: colorButtons,
     },
     {
       label: ButtonLabels.RESET_USER,
       colored: areButtonsColored,
       onClick: resetUser,
     },
+    {
+      label: ButtonLabels.RELOAD_PAGE,
+      colored: areButtonsColored,
+      onClick: reloadPage
+    }
   ]
 }
 

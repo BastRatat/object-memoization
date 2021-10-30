@@ -1,4 +1,4 @@
-import { ButtonProps } from './types'
+import { ButtonProps } from '../types/types'
 
 const Button = ({ label, onClick, colored }: ButtonProps) => {
   return (

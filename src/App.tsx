@@ -1,9 +1,10 @@
 import { useState, useRef, useMemo } from 'react'
-import Child from './Child'
-import Button from './Button'
-import { InitialState, Users } from './types'
-import { userOne, userTwo } from './users'
-import { generateButtons } from './helpers'
+import MemoizedChild from './components/MemoizedChild'
+import Child from './components/Child'
+import Button from './components/Button'
+import { InitialState, Users } from './types/types'
+import { USER_ONE, USER_TWO } from './constants/users'
+import { generateButtons } from './helpers/helpers'
 import './App.css'
 
 const initialState: InitialState = {
@@ -18,12 +19,12 @@ const App = () => {
   const initialRef = useRef(0)
   const parentCounter = ++initialRef.current
 
-  const handleToggleUser = (user: Users): void => {
+  const toggleUser = (user: Users): void => {
     if (user === Users.BASTIEN) {
-      setToggleUser(userOne)
+      setToggleUser(USER_ONE)
     }
     if (user === Users.ANTOINE) {
-      setToggleUser(userTwo)
+      setToggleUser(USER_TWO)
     }
   }
 
@@ -31,16 +32,21 @@ const App = () => {
     setToggleUser(initialState)
   }
 
-  const handleColoringButton = (): void => {
+  const colorButtons = (): void => {
     setAreButtonsColored(!areButtonsColored)
+  }
+
+  const reloadPage = () => {
+    window.location.reload()
   }
 
   const buttonsData = useMemo(
     () =>
       generateButtons(areButtonsColored, {
-        handleToggleUser,
-        handleColoringButton,
+        toggleUser,
+        colorButtons,
         resetUser,
+        reloadPage,
       }),
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [areButtonsColored],
@@ -52,11 +58,15 @@ const App = () => {
         <section>
           <h3>PARENT</h3>
           <p>Parent render(s): {parentCounter}</p>
-          {buttonsData.map(({ label, colored, onClick }) => (
-            <Button {...{ label, colored, onClick }} />
+          {buttonsData.map(props => (
+            <Button {...props} />
           ))}
+        {/* <button onClick={reloadPage}>Reload</button> */}
         </section>
+        <div className="children-wrapper">
+        <MemoizedChild {...{ user }} />
         <Child {...{ user }} />
+        </div>
       </header>
     </div>
   )

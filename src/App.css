@@ -45,10 +45,20 @@ section {
   width: 50vw;
   height: 30vh;
   border: solid 1px white;
-  padding: 15px;
-  margin: 15px;
+  /* padding: 15px;
+  margin: 15px; */
 }
 
 .colored {
   background-color:cornsilk;
+}
+
+.child-section {
+  border: solid 1px white;
+  height: 50vh;
+  width: 25vw;
+}
+
+.children-wrapper {
+  display: flex;
 }
