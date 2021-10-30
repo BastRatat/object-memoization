@@ -1,20 +1,20 @@
-import { useRef, memo } from "react";
-import { ChildProps } from "./types";
-import { arePropsEqual } from "./helpers";
+import { useRef, memo } from 'react'
+import { ChildProps } from './types'
+import { arePropsEqual } from './helpers'
 
 const Child = ({ user }: ChildProps) => {
-  const { id = null, firstName = "", lastName = "" } = user;
-  const childCounter = useRef(0);
+  const initialRef = useRef(0)
+  const childCounter = ++initialRef.current
   return (
     <section>
       <h3>CHILD</h3>
-      <p>ID: {id}</p>
-      <p>First name: {firstName}</p>
-      <p>Last name: {lastName}</p>
+      {Object.entries(user).map(([key, value]) => (
+        <p {...{ key }}>{value}</p>
+      ))}
       <hr />
-      <p>Child render(s): {(childCounter.current += 1)}</p>
+      <p>Child render(s): {childCounter}</p>
     </section>
-  );
-};
+  )
+}
 
-export default memo(Child, arePropsEqual);
+export default memo(Child, arePropsEqual)

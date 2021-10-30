@@ -1,22 +1,22 @@
-import { ChildProps } from "./types";
+import { ChildProps } from './types'
 
 const arePropsEqual = (
   prevProps: ChildProps,
-  nextProps: ChildProps
+  nextProps: ChildProps,
 ): boolean => {
   const {
     user: { id: prevPropsId },
-  } = prevProps;
+  } = prevProps
   const {
     user: { id: nextPropsId },
-  } = nextProps;
+  } = nextProps
 
   if (prevPropsId === nextPropsId) {
     // memoize
-    return true;
+    return true
   }
   // Do not memoize
-  return false;
-};
+  return false
+}
 
-export { arePropsEqual };
+export { arePropsEqual }

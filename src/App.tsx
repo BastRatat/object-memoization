@@ -1,66 +1,65 @@
-import { useState, useRef } from "react";
-import Child from "./Child";
-import { InitialState } from "./types";
-import { userOne, userTwo } from "./users";
-import "./App.css";
+import { useState, useRef } from 'react'
+import Child from './Child'
+import { InitialState, Users } from './types'
+import { userOne, userTwo } from './users'
+import './App.css'
+
+const initialState: InitialState = {
+  id: null,
+  firstName: '',
+  lastName: '',
+}
 
 const App = () => {
-  const [user, setToggleUser] = useState<InitialState>({
-    id: null,
-    firstName: "",
-    lastName: "",
-  });
-  const [areButtonsColored, setAreButtonsColored] = useState<boolean>(false);
-  const parentCounter = useRef(0);
+  const [user, setToggleUser] = useState(initialState)
+  const [areButtonsColored, setAreButtonsColored] = useState<boolean>(false)
+  const initialRef = useRef(0)
+  const parentCounter = ++initialRef.current
 
-  const handleToggleUser = (user: any): void => {
-    if (user === "Bastien") {
-      setToggleUser(userOne);
+  const handleToggleUser = (user: Users): void => {
+    if (user === Users.BASTIEN) {
+      setToggleUser(userOne)
     }
-    if (user === "Antoine") {
-      setToggleUser(userTwo);
+    if (user === Users.ANTOINE) {
+      setToggleUser(userTwo)
     }
-  };
+  }
 
   const resetUser = (): void => {
-    setToggleUser({
-      id: null,
-      firstName: "",
-      lastName: "",
-    });
-  };
+    setToggleUser(initialState)
+  }
 
   const handleColoringButton = (): void => {
-    setAreButtonsColored(!areButtonsColored);
-  };
+    setAreButtonsColored(!areButtonsColored)
+  }
 
   return (
     <div className="App">
       <header className="App-header">
         <section>
           <h3>PARENT</h3>
-          <p>Parent render(s): {(parentCounter.current += 1)}</p>
+          <p>Parent render(s): {parentCounter}</p>
           <button
-            onClick={() => handleToggleUser("Bastien")}
-            className={areButtonsColored ? "colored" : ""}
+            onClick={() => handleToggleUser(Users.BASTIEN)}
+            className={areButtonsColored ? 'colored' : ''}
           >
             Toggle Bastien
           </button>
           <button
-            onClick={() => handleToggleUser("Antoine")}
-            className={areButtonsColored ? "colored" : ""}
+            onClick={() => handleToggleUser(Users.ANTOINE)}
+            className={areButtonsColored ? 'colored' : ''}
           >
             Toggle Antoine
           </button>
           <button
             onClick={handleColoringButton}
-            className={areButtonsColored ? "colored" : ""}
+            className={areButtonsColored ? 'colored' : ''}
           >
             Color buttons
           </button>
           <button
             onClick={resetUser}
-            className={areButtonsColored ? "colored" : ""}
+            className={areButtonsColored ? 'colored' : ''}
           >
             Reset user
           </button>
@@ -68,7 +67,7 @@ const App = () => {
         <Child {...{ user }} />
       </header>
     </div>
-  );
-};
+  )
+}
 
-export default App;
+export default App
