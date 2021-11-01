@@ -10,12 +10,9 @@ const Child = ({ user }: ChildProps) => {
       {Object.entries(user).map(([key, value]) => (
         <p {...{ key }}>{value}</p>
       ))}
-      <hr />
-      <p>Child render(s): {childCounter}</p>
+      <p className="counter">RENDERS: {childCounter}</p>
     </div>
   )
 }
-
-Child.whyDidYouRender = true
 
 export default Child

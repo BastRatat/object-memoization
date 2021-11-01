@@ -23,11 +23,25 @@ section {
   border: solid 1px white;
 }
 
+p {
+  margin-block-start: 0;
+  margin-block-end: 0;
+  padding: 1vh;
+}
+
 .colored {
   background-color:cornsilk;
 }
 
+.child-section-memo {
+  background-color: #091353;
+  border: solid 1px white;
+  height: 50vh;
+  width: 35vw;
+}
+
 .child-section {
+  background-color: #9D84B7;
   border: solid 1px white;
   height: 50vh;
   width: 35vw;
@@ -36,3 +50,8 @@ section {
 .children-wrapper {
   display: flex;
 }
+
+.counter {
+  font-weight: bold;
+}
+
