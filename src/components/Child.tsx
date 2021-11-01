@@ -16,4 +16,6 @@ const Child = ({ user }: ChildProps) => {
   )
 }
 
+Child.whyDidYouRender = true
+
 export default Child

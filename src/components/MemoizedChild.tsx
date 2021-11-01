@@ -17,4 +17,6 @@ const MemoizedChild = ({ user }: ChildProps) => {
   )
 }
 
+MemoizedChild.whyDidYouRender = true
+
 export default memo(MemoizedChild, arePropsEqual)

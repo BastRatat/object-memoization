@@ -8,7 +8,7 @@ export enum ButtonLabels {
   TOGGLE_ANTOINE = 'Toggle Antoine',
   COLOR_BUTTON = 'Color buttons',
   RESET_USER = 'Reset user',
-  RELOAD_PAGE = 'Reload'
+  RELOAD_PAGE = 'Reload',
 }
 
 export interface InitialState {
@@ -35,3 +35,11 @@ export interface Handlers {
   resetUser: Setter
   reloadPage: Setter
 }
+
+interface ButtonType {
+  label: ButtonLabels
+  colored: boolean
+  onClick: Setter
+}
+
+export type Buttons = ButtonType[]

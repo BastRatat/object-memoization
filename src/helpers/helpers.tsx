@@ -1,4 +1,10 @@
-import { ChildProps, ButtonLabels, Users, Handlers } from '../types/types'
+import {
+  ChildProps,
+  ButtonLabels,
+  Users,
+  Handlers,
+  Buttons,
+} from '../types/types'
 
 const arePropsEqual = (
   prevProps: ChildProps,
@@ -12,14 +18,15 @@ const arePropsEqual = (
   } = nextProps
 
   if (prevPropsId === nextPropsId) {
-    // memoize
     return true
   }
-  // Do not memoize
   return false
 }
 
-const generateButtons = (areButtonsColored: boolean, handlers: Handlers) => {
+const generateButtons = (
+  areButtonsColored: boolean,
+  handlers: Handlers,
+): Buttons => {
   const { toggleUser, colorButtons, resetUser, reloadPage } = handlers
   return [
     {
@@ -45,8 +52,8 @@ const generateButtons = (areButtonsColored: boolean, handlers: Handlers) => {
     {
       label: ButtonLabels.RELOAD_PAGE,
       colored: areButtonsColored,
-      onClick: reloadPage
-    }
+      onClick: reloadPage,
+    },
   ]
 }
 
