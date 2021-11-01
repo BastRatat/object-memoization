@@ -98,9 +98,11 @@ FunctionalComponent.whyDidYouRender = true
 ### Preview
 
 ***Memoization***
+
 https://user-images.githubusercontent.com/32437299/139672983-b6bb488a-54ae-48e4-b817-881c817b88d3.mov
 
 ***Tracking component tool***
+
 https://user-images.githubusercontent.com/32437299/139675716-52805d31-571b-4ec6-ae50-5de71977900b.mov
 
 
